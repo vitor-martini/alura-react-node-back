@@ -20,7 +20,7 @@ function getBooks (req, res){
 
 function getBook (req, res) {
   try {
-    const id = req.params.id;
+    const id = req.params.id
 
     if(!idIsValid(id)){
       res.status(422)

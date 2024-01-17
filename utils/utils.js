@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require("fs")
 
 function idIsValid(id) {
   return (id && Number(id))

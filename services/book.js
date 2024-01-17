@@ -1,14 +1,14 @@
-const fs = require("fs");
+const fs = require("fs")
 const { getDataFromJSON } = require("../utils/utils")
-const booksFile = "books.json";
+const booksFile = "books.json"
 
 function getAllBooks() {
   return getDataFromJSON(booksFile)
 }
 
 function getBookById(id) {
-  const books = getAllBooks();
-  return books.filter(x => x.id === id)[0];
+  const books = getAllBooks()
+  return books.filter(x => x.id === id)[0]
 }
 
 function addBook(newBook) {
