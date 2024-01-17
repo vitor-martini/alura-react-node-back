@@ -1,98 +1,98 @@
-const { getAllLivros, getLivroById, addLivro, updateLivro, destroyLivro} = require("../services/livro")
+const { getAllBooks, getBookById, addBook, updateBook, destroyBook} = require("../services/book")
 const { idIsValid } = require("../utils/utils")
 
-function getLivros (req, res){
+function getBooks (req, res){
   try{
-    const livros = getAllLivros()
+    const books = getAllBooks()
 
-    if(livros){
-      res.send(livros)
+    if(books){
+      res.send(books)
       return
     }
   
     res.status(404)
-    res.send("Arquivo não encontrado")
+    res.send("File not found")
   } catch(error){
     res.status(500)
     res.send(error.message)
   }
 }
 
-function getLivro (req, res) {
+function getBook (req, res) {
   try {
     const id = req.params.id;
 
     if(!idIsValid(id)){
       res.status(422)
-      res.send("ID inválido")
+      res.send("Invalid ID")
       return
     }
     
-    const livro = getLivroById(id)
+    const book = getBookById(id)
 
-    if(!livro){
+    if(!book){
       res.status(404)
-      res.send("Livro não encontrado")
+      res.send("Book not found")
       return
     }
 
-    res.send(livro)
+    res.send(book)
   } catch(error){
     res.status(500)
     res.send(error.message)
   }
 }
 
-function postLivro (req, res) {
+function postBook (req, res) {
   try {
-    addLivro(req.body)
+    addBook(req.body)
     res.status(201)
-    res.send("Livro inserido com sucesso")
+    res.send("Book inserted successfully")
   } catch(error){
     res.status(500)
     res.send(error.message)
   }
 }
 
-function patchLivro (req, res) {
+function patchBook (req, res) {
   try {
     const id = req.params.id
     
     if(!idIsValid(id)){
       res.status(422)
-      res.send("ID inválido")
+      res.send("Invalid ID")
       return
     }
 
-    updateLivro(id, req.body)
+    updateBook(id, req.body)
     res.status(200)
-    res.send("Livro atualizado com sucesso")
+    res.send("Book updated successfully")
   } catch(error){
     res.status(500)
     res.send(error.message)
   }
 }
 
-function deleteLivro (req, res) {
+function deleteBook (req, res) {
   try {
     const id = req.params.id
 
     if(!idIsValid(id)){
       res.status(422)
-      res.send("ID inválido")
+      res.send("Invalid ID")
       return
     }
     
-    const livro = getLivroById(id)
-    if(!livro){
+    const book = getBookById(id)
+    if(!book){
       res.status(404)
-      res.send("Livro não encontrado")
+      res.send("Book not found")
       return
     }
     
-    destroyLivro(id)
+    destroyBook(id)
     res.status(200)
-    res.send("Livro excluído com sucesso")
+    res.send("Book deleted successfully")
   } catch(error){
     res.status(500)
     res.send(error.message)
@@ -100,9 +100,9 @@ function deleteLivro (req, res) {
 }
 
 module.exports = {
-  getLivros,
-  getLivro,
-  postLivro,
-  patchLivro,
-  deleteLivro
+  getBooks,
+  getBook,
+  postBook,
+  patchBook,
+  deleteBook
 }
